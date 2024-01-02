@@ -1,11 +1,11 @@
 import pandas as pd
 from statsmodels.tsa.api import VAR
 from statsmodels.tsa.stattools import adfuller
-
+from python_scripts.analysis import aidaAnalysis as ad
 # Function designed to check stationary of data
 def check_stationarity(series):
     result = adfuller(series.dropna())
-    return result[1] <= 0.05  # value of p
+    return result[1] <= 0.05  # value of p TODO
 
 # Function to determine the optimal number of LAGS based on AIC or BIC
 def select_lags(data, max_lags, criterion='aic'):
@@ -30,8 +30,8 @@ def select_lags(data, max_lags, criterion='aic'):
     return best_lags
 
 # Load data
-path = "C:\\Users\\Viktoria Stiem\\Documents\\htwg Konstanz\\2324Wise\\teamprojekt\\Daten_pandas_2_weeks.csv"
-dataframe = pd.read_csv(path)
+# path = "C:\\Users\\Viktoria Stiem\\Documents\\htwg Konstanz\\2324Wise\\teamprojekt\\Daten_pandas_2_weeks.csv"
+dataframe, winterframe = ad.get_seasons;
 dataframe['timestamp'] = pd.to_datetime(dataframe['timestamp'])
 
 # Print data types before modification

@@ -13,7 +13,7 @@ import numpy as np
 mpl.rcParams['figure.figsize'] = (10,8)
 mpl.rcParams['axes.grid'] = False
 
-df = pd.read_csv('/Users/aidavehapi/Documents/HTWG/Semester06/TeamProjekt/Teamproject_Analysis/src/data/daten.csv')
+df = pd.read_csv('src/data/daten.csv')
 df['timestamp'] = pd.to_datetime(df['timestamp'])
 #df.set_index('timestamp', inplace=True)
 
@@ -52,7 +52,11 @@ def divide_seasons(dataset, temp_column_name, summer_temp_threshold=19.2):
 
     return summer_df, winter_df
 
-summer_df, winter_df = divide_seasons(df, 'DSP_KK_CIRCUIT__24A1_AUSSENTEMPERATUR_EQUIP_ID_Value')
+def get_seasons():
+    summer_df, winter_df = divide_seasons(df, 'DSP_KK_CIRCUIT__24A1_AUSSENTEMPERATUR_EQUIP_ID_Value')
+    return summer_df, winter_df
+
+#summer_df, winter_df = divide_seasons(df, 'DSP_KK_CIRCUIT__24A1_AUSSENTEMPERATUR_EQUIP_ID_Value')
 
 
 numeric_columns = [
